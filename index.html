@@ -3,26 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Streaming Platform</title>
-    <link rel="stylesheet" href="/public/css/styles.css">
-    <meta name="description" content="Watch live sports streaming. Get the latest scores and updates.">
-    <meta name="keywords" content="sports, streaming, live, watch, scores">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="asshjan74-boop">
+    <meta name="description" content="Sportz100 - Real-time live scores, TV guides, and sports statistics for Soccer, NBA, NFL, MLB, NHL, F1, UFC, NCAAF, NCAAB, Tennis, Golf. Get instant updates on all major sports with SEO-optimized content.">
+    <meta name="keywords" content="live sports scores, NBA scores, NFL scores, MLB scores, soccer scores, hockey scores, F1 racing, UFC fights, NCAA basketball, NCAA football, tennis scores, golf rankings, sports news, sports stats, real-time sports data">
+    <meta name="author" content="Sportz100">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:title" content="Sportz100 - Live Sports Scores & Real-Time Updates">
+    <meta property="og:description" content="Get live scores, TV guides, and stats for all major sports including NBA, NFL, Soccer, MLB, Hockey, F1, and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Sportz100 - Live Sports Scores & Real-Time Updates | NBA, NFL, Soccer, MLB, Hockey</title>
+    <link rel="canonical" href="https://sportz100.com">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23FF6B35'>⚽</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to the Sports Streaming Platform</h1>
+    <!-- JSON-LD Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Sportz100",
+        "url": "https://sportz100.com",
+        "logo": "https://sportz100.com/logo.png",
+        "description": "Real-time sports scores, TV guides, and statistics for all major sports",
+        "sameAs": ["https://twitter.com/sportz100", "https://facebook.com/sportz100"]
+    }
+    </script>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">Sportz<span class="logo-highlight">100</span></span>
+            </div>
+            <nav class="nav">
+                <a href="#soccer" class="nav-link">⚽ Soccer</a>
+                <a href="#nba" class="nav-link">🏀 NBA</a>
+                <a href="#nfl" class="nav-link">🏈 NFL</a>
+                <a href="#mlb" class="nav-link">⚾ MLB</a>
+                <a href="#nhl" class="nav-link">🏒 NHL</a>
+                <a href="#f1" class="nav-link">🏎️ F1</a>
+                <a href="#ufc" class="nav-link">🥊 UFC</a>
+                <a href="#ncaaf" class="nav-link">🏈 NCAAF</a>
+                <a href="#ncaab" class="nav-link">🏀 NCAAB</a>
+                <a href="#tennis" class="nav-link">🎾 Tennis</a>
+                <a href="#golf" class="nav-link">⛳ Golf</a>
+            </nav>
+            <div class="header-right">
+                <span class="last-update" id="lastUpdate">Last updated: --:--</span>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+            </div>
+        </div>
     </header>
-    <main>
-        <section id="live-stream">
-            <h2>Live Streams</h2>
-            <div id="streams"></div>
-        </section>
-        <footer>
-            <p>&copy; 2026 Sports Streaming Platform</p>
-        </footer>
+
+    <main class="main-content">
+        <div class="container-grid">
+            <!-- Main Content Area -->
+            <div class="content-area">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero-content">
+                        <h1>Live Sports Scores & Real-Time Updates</h1>
+                        <p>Get instant updates on all your favorite sports with live scores, TV guides, and expert statistics</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-label">Sports</span>
+                                <span class="stat-value" id="totalSports">11</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Live Games</span>
+                                <span class="stat-value" id="liveGamesCount">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Updates/Hour</span>
+                                <span class="stat-value">Real-Time</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Soccer Section -->
+                <section id="soccer" class="sport-section" data-sport="soccer">
+                    <div class="section-header">
+                        <h2>⚽ Soccer / Football</h2>
+                        <span class="section-status" id="soccerStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="soccerScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="soccerTV"></div>
+                </section>
+
+                <!-- NBA Section -->
+                <section id="nba" class="sport-section" data-sport="nba">
+                    <div class="section-header">
+                        <h2>🏀 NBA Basketball</h2>
+                        <span class="section-status" id="nbaStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="nbaScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="nbaTV"></div>
+                </section>
+
+                <!-- NFL Section -->
+                <section id="nfl" class="sport-section" data-sport="nfl">
+                    <div class="section-header">
+                        <h2>🏈 NFL Football</h2>
+                        <span class="section-status" id="nflStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="nflScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="nflTV"></div>
+                </section>
+
+                <!-- MLB Section -->
+                <section id="mlb" class="sport-section" data-sport="mlb">
+                    <div class="section-header">
+                        <h2>⚾ MLB Baseball</h2>
+                        <span class="section-status" id="mlbStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="mlbScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="mlbTV"></div>
+                </section>
+
+                <!-- NHL Section -->
+                <section id="nhl" class="sport-section" data-sport="nhl">
+                    <div class="section-header">
+                        <h2>🏒 NHL Hockey</h2>
+                        <span class="section-status" id="nhlStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="nhlScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="nhlTV"></div>
+                </section>
+
+                <!-- F1 Section -->
+                <section id="f1" class="sport-section" data-sport="f1">
+                    <div class="section-header">
+                        <h2>🏎️ Formula 1 Racing</h2>
+                        <span class="section-status" id="f1Status">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="f1Scores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="f1TV"></div>
+                </section>
+
+                <!-- UFC Section -->
+                <section id="ufc" class="sport-section" data-sport="ufc">
+                    <div class="section-header">
+                        <h2>🥊 UFC Fighting</h2>
+                        <span class="section-status" id="ufcStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="ufcScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="ufcTV"></div>
+                </section>
+
+                <!-- NCAAF Section -->
+                <section id="ncaaf" class="sport-section" data-sport="ncaaf">
+                    <div class="section-header">
+                        <h2>🏈 NCAAF College Football</h2>
+                        <span class="section-status" id="ncaafStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="ncaafScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="ncaafTV"></div>
+                </section>
+
+                <!-- NCAAB Section -->
+                <section id="ncaab" class="sport-section" data-sport="ncaab">
+                    <div class="section-header">
+                        <h2>🏀 NCAAB College Basketball</h2>
+                        <span class="section-status" id="ncaabStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="ncaabScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="ncaabTV"></div>
+                </section>
+
+                <!-- Tennis Section -->
+                <section id="tennis" class="sport-section" data-sport="tennis">
+                    <div class="section-header">
+                        <h2>🎾 Tennis</h2>
+                        <span class="section-status" id="tennisStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="tennisScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="tennisTV"></div>
+                </section>
+
+                <!-- Golf Section -->
+                <section id="golf" class="sport-section" data-sport="golf">
+                    <div class="section-header">
+                        <h2>⛳ Golf</h2>
+                        <span class="section-status" id="golfStatus">Loading...</span>
+                    </div>
+                    <div class="scores-container" id="golfScores">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="tv-guide" id="golfTV"></div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section featured">
+                    <h3>🔥 Top Matches This Week</h3>
+                    <div class="top-matches" id="topMatches">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section trending">
+                    <h3>📊 Trending Now</h3>
+                    <div class="trending-list" id="trendingList">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section stats">
+                    <h3>📈 Sports Stats</h3>
+                    <div class="stats-content" id="statsContent">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section schedule">
+                    <h3>📅 Upcoming Events</h3>
+                    <div class="upcoming-events" id="upcomingEvents">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </main>
-    <script src="/public/js/app.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Sportz100</h4>
+                    <p>Your ultimate destination for real-time sports scores, live data, and comprehensive sports statistics from around the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Sports Covered</h4>
+                    <ul>
+                        <li>NBA, NFL, MLB, NHL</li>
+                        <li>Soccer, F1, UFC</li>
+                        <li>College Sports (NCAAF, NCAAB)</li>
+                        <li>Tennis, Golf</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Data Source</h4>
+                    <p>Powered by ESPN Free API for accurate, real-time sports data</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Instagram">📷</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sportz100. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>Last API Update: <span id="apiUpdateTime">--:--:--</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="api.js"></script>
+    <script src="seo.js"></script>
 </body>
 </html>
